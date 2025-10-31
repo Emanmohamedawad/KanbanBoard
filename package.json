@@ -15,13 +15,13 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
+    "@tanstack/react-query": "^5.90.5",
     "axios": "^1.13.1",
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.24",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-query": "^3.39.3",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
