@@ -21,7 +21,7 @@ npm install -g json-server
 
 Start the mock API server:
 
-json-server --watch db.json --port 4000
+npm run json-server
 
 
 This will serve mock data from the db.json file at:
