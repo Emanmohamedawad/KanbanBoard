@@ -5,20 +5,39 @@ Features **smooth drag-and-drop**, **infinite scroll**, **search**, **CRUD**, an
 
 ---
 
-## Start
+🚀 Getting Started
 
-1. Install Packages
-npm i
+Follow these steps to set up and run the project locally.
 
-3. Install Mock API
+📦 1. Install Dependencies
+npm install
+
+🧪 2. Set Up Mock API
+
+Install json-server globally (only once):
+
 npm install -g json-server
 
-4. Start Mock Server
+
+Start the mock API server:
+
 json-server --watch db.json --port 4000
 
-5. Start Development Server
+
+This will serve mock data from the db.json file at:
+
+http://localhost:4000
+
+💻 3. Start the Development Server
+
+In a separate terminal, run:
+
 npm run dev
-Open http://localhost:3000
+
+
+Then open your browser and navigate to:
+
+http://localhost:3000
 
 
 ## Features
