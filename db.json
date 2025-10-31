@@ -11,7 +11,7 @@
       "id": "2",
       "title": "test 2",
       "description": "eman",
-      "column": "review",
+      "column": "in_progress",
       "position": 0
     },
     {
@@ -22,15 +22,8 @@
       "position": 1
     },
     {
-      "id": "4",
-      "title": "t3",
-      "description": "rr",
-      "column": "done",
-      "position": 1
-    },
-    {
       "id": "7",
-      "title": "ui",
+      "title": "ui em",
       "description": "ui",
       "column": "backlog",
       "position": 4
