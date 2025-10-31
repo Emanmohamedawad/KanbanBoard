@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import {
   Box,
   Button,
@@ -13,7 +13,12 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SearchIcon from "@mui/icons-material/Search";
-import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 import {
   fetchTasks,
   createTask,
@@ -60,9 +65,9 @@ export default function KanbanBoard() {
   const pageLimit = 10;
 
   function useColumnTasks(colId) {
-    return useInfiniteQuery(
-      ["tasks", colId, search, pageLimit],
-      ({ pageParam = 1 }) => {
+    return useInfiniteQuery({
+      queryKey: ["tasks", colId, search, pageLimit],
+      queryFn: ({ pageParam = 1 }) => {
         const q = search?.trim();
         // When searching, fetch without column filter and filter client-side per column
         return fetchTasks({
@@ -72,18 +77,15 @@ export default function KanbanBoard() {
           limit: pageLimit,
         });
       },
-
-      {
-        getNextPageParam: (lastPage, allPages) =>
-          lastPage.length < pageLimit ? undefined : allPages.length + 1,
-        keepPreviousData: false,
-        staleTime: 0,
-        refetchOnMount: "always",
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: true,
-        retry: 0,
-      }
-    );
+      getNextPageParam: (lastPage, allPages) =>
+        lastPage.length < pageLimit ? undefined : allPages.length + 1,
+      keepPreviousData: false,
+      staleTime: 0,
+      refetchOnMount: "always",
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+      retry: 0,
+    });
   }
 
   // Create queries for all columns at top-level to keep hooks order stable
@@ -133,19 +135,22 @@ export default function KanbanBoard() {
   const anyResults = !search.trim() ? true : searchResults.count > 0;
 
   const mutations = {
-    create: useMutation((task) => createTask(task), {
+    create: useMutation({
+      mutationFn: (task) => createTask(task),
       onSuccess: () => {
         columns.forEach((c) => queryClient.invalidateQueries(["tasks", c.id]));
       },
     }),
-    update: useMutation(({ id, updates }) => apiUpdateTask(id, updates), {
+    update: useMutation({
+      mutationFn: ({ id, updates }) => apiUpdateTask(id, updates),
       onSuccess: (_, vars) => {
         // Get all affected columns and invalidate them
         columns.forEach((c) => queryClient.invalidateQueries(["tasks", c.id]));
       },
     }),
 
-    delete: useMutation((id) => apiDeleteTask(id), {
+    delete: useMutation({
+      mutationFn: (id) => apiDeleteTask(id),
       onSuccess: () => {
         columns.forEach((c) => queryClient.invalidateQueries(["tasks", c.id]));
       },
