@@ -7,16 +7,16 @@ Features **smooth drag-and-drop**, **infinite scroll**, **search**, **CRUD**, an
 
 ## Start
 
-2. Install Packages
+1. Install Packages
 npm i
 
-2. Install Mock API
+3. Install Mock API
 npm install -g json-server
 
-3. Start Mock Server
+4. Start Mock Server
 json-server --watch db.json --port 4000
 
-4. Start Development Server
+5. Start Development Server
 npm run dev
 Open http://localhost:3000
 
